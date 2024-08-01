@@ -155,3 +155,28 @@ from station
 
 select round( power(power(max(lat_n) - min(lat_n),2) + power(max(long_w) - min(long_w),2),1/2),4)
 from station
+
+
+--! Given the CITY and COUNTRY tables, query the sum of the populations of all cities where the CONTINENT is 'Asia'.
+
+select sum(city.population)
+from city
+inner join country
+on countrycode = code
+group by continent
+having continent = "Asia";
+
+SELECT SUM(city.population)
+FROM city
+INNER JOIN country ON city.countrycode = country.code
+WHERE country.continent = 'Asia'
+GROUP BY country.continent;
+
+
+--?
+
+select continent, floor((avg(city.population)))
+from country
+inner join city
+on countrycode = code
+group by continent

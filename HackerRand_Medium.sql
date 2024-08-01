@@ -10,3 +10,24 @@ case
     else 'Scalene'
     end as 'Triangle Type'
 from Triangles
+
+
+--? P(R) represents a pattern drawn by Julia in R rows. Write query for p(20)
+-- p(4):
+-- * * * *
+-- * * *
+-- * *
+-- *
+
+with recursive cte as(
+    select 20 as n
+    union all 
+    select n-1 
+    from cte
+    where n > 1
+)
+
+select repeat ('* ',n)
+from cte;
+
+
