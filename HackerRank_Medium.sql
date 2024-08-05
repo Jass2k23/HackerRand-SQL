@@ -1,5 +1,6 @@
 --! Write a query to print all prime numbers less than or equal to 1000. Print your result on a single line, and use the ampersand (&) character as your separator (instead of a space).
 
+
 --? Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table:
 
 select 
@@ -31,3 +32,26 @@ select repeat ('* ',n)
 from cte;
 
 
+--? Priya(S)
+--? Samantha(D)
+--? There are a total of 2 doctors.
+--? There are a total of 2 singers.
+
+select concat(name, concat('(',substr(occupation,1,1),')'))
+from occupations
+order by name;
+select concat('There are a total of ',count(occupation),' ',lower(occupation),'s.')
+from occupations
+group by occupation
+order by count(occupation), occupation;
+
+--! You are given a table, BST, containing two columns: N and P, where N represents the value of a node in Binary Tree, and P is the parent of N.
+
+select N,
+case 
+    when P is null then 'Root'
+    when N in (select distinct P from bst) then 'Inner'
+    else 'Leaf'
+end
+from bst
+order by N;
